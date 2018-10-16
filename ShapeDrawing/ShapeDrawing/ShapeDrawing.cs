@@ -61,7 +61,7 @@ public class ShapeDrawingForm : Form
 		Stream stream;
 		SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-		saveFileDialog.Filter = "TeX files|(*.tex)";
+		saveFileDialog.Filter = "SVG files|(*.svg)";
 		saveFileDialog.RestoreDirectory = true;
 		
 		if(saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -72,6 +72,13 @@ public class ShapeDrawingForm : Form
                 //   commands to draw the shapes
                 using(StreamWriter writer = new StreamWriter(stream))
                 {
+                    writer.Write("<?xml version=\"1.0\" standalone=\"no\"?> <!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\"> <svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"> ");
+                    foreach(Shape shape in shapes)
+                    {
+                        writer.WriteLine(shape.SVGObject());
+                    }
+                    writer.Write("</svg>");
+                    writer.Close();
                         // Write strings to the file here using:
                         //   writer.WriteLine("Hello World!");
                 }				

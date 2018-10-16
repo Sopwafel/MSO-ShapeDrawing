@@ -8,6 +8,8 @@ public abstract class Shape
 	{
 	}
 
+    public abstract string SVGObject();
+
     public abstract void Draw(Graphics Canvas);
 	
 }

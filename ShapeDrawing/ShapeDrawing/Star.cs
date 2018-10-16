@@ -51,6 +51,11 @@ public class Star : Shape
 		}
 		
 	}
+
+    public override string SVGObject()
+    {
+        return "";
+    }
 }
 
 
