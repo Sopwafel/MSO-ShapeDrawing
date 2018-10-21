@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ShapeDrawing;
 
 public class Star : Shape
 {
@@ -20,7 +21,7 @@ public class Star : Shape
 		this.height = height;
 	}
 
-	public override void Draw (Graphics Canvas)
+	public override void Draw (Visualization Canvas)
 	{
 		Pen pen = new Pen (Color.Black);
 
@@ -49,13 +50,7 @@ public class Star : Shape
                                 pts[(i+1) % numPoints].X,
                                 pts[(i+1) % numPoints].Y);
 		}
-		
 	}
-
-    public override string SVGObject()
-    {
-        return "";
-    }
 }
 
 

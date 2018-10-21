@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using ShapeDrawing;
 
 public abstract class Shape
 {
@@ -8,8 +9,7 @@ public abstract class Shape
 	{
 	}
 
-    public abstract string SVGObject();
 
-    public abstract void Draw(Graphics Canvas);
+    public abstract void Draw(Visualization Canvas);
 	
 }

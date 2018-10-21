@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ShapeDrawing;
 
 
 class Rectangle : Shape
@@ -21,16 +22,7 @@ class Rectangle : Shape
 		this.height = height;
     }
 
-    public override string SVGObject()
-    {
-        int x2, y2;
-        x2 = x + width;
-        y2 = y + height;
-        string svg = String.Format("<polyline points=\"{0},{1} {2},{3} {4},{5} {6},{7} {8},{9}\" style=\"fill:none;stroke:black;stroke-width:1\" />", x, y,   x2, y,    x2, y2,   x, y2,   x,y );
-        return svg;
-    }
-
-    public override void Draw(Graphics Canvas)
+    public override void Draw(Visualization Canvas)
     {
 		Pen pen = new Pen(Color.Black);
 		Canvas.DrawLine(pen,x,y,x + width,y);
