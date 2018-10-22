@@ -62,13 +62,25 @@ public class ShapeDrawingForm : Form
 		Stream stream;
 		SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-		saveFileDialog.Filter = "SVG files|(*.svg)";
+		saveFileDialog.Filter = "SVG files|(*.svg)|TikZ files|(*.tikz)";
 		saveFileDialog.RestoreDirectory = true;
 		
 		if(saveFileDialog.ShowDialog() == DialogResult.OK)
 		{
 			if((stream = saveFileDialog.OpenFile()) != null)
 			{
+                Exporter exporter;
+                // Add switch cases when adding more file options
+                switch (saveFileDialog.FilterIndex)
+                {
+                    case 1:
+                        exporter = new SVG();
+                        break;
+                    default:
+                        exporter = new TikZ();
+                        break;
+                }
+
 				// Insert code here that generates the string of LaTeX
                 //   commands to draw the shapes
                 using(StreamWriter writer = new StreamWriter(stream))
@@ -76,9 +88,9 @@ public class ShapeDrawingForm : Form
                     SVG svg = new SVG();
                     foreach(Shape shape in shapes)
                     {
-                        shape.Draw(svg);
+                        shape.Draw(exporter);
                     }
-                    writer.Write(svg.export());
+                    writer.Write(exporter.Export());
                     writer.Close();
                         // Write strings to the file here using:
                         //   writer.WriteLine("Hello World!");
